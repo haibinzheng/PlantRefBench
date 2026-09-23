@@ -1,0 +1,8 @@
+{
+  "run_id": "phase17_samap_external_input_addendum_v1",
+  "parent_config_sha256": "73a48193e757e8202cd96cd7b8da934e76cd1e1de0a05d6ee086ecb24d48fdbb",
+  "frozen_before_input_preparation": true,
+  "catharanthus_gene_identifier_rule": "Use the frozen exact H5AD-gene to locus-tag table where present; otherwise normalize the assembly-matched M9H77 identifier by replacing '-' with '_' and require an exact match to the frozen longest-protein FASTA.",
+  "scientific_scope_change": false,
+  "reason": "SAMap consumes exact protein identifiers rather than frozen Phase 12 orthogroup identifiers. The assembly and longest-protein FASTA remain the previously frozen GCA_024505715.1 assets."
+}

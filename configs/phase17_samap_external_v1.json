@@ -1,0 +1,50 @@
+{
+  "run_id": "phase17_samap_external_v1",
+  "frozen_at": "2026-09-21T09:20:00+08:00",
+  "purpose": "Smallest paper-relevant SAMap external strong-baseline matrix after the successful Phase 17 smoke test.",
+  "package": {"distribution": "sc-samap", "version": "3.0.0"},
+  "species": {
+    "at": {"species": "Arabidopsis thaliana", "role": "train", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/orthology_inputs/reference_longest_protein_v1/arabidopsis_thaliana.longest_protein.fa"},
+    "os": {"species": "Oryza sativa", "role": "train", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/orthology_inputs/reference_longest_protein_v1/oryza_sativa.longest_protein.fa"},
+    "zm": {"species": "Zea mays", "role": "train", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/orthology_inputs/reference_longest_protein_v1/zea_mays.longest_protein.fa"},
+    "gm": {"species": "Glycine max", "role": "train", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/orthology_inputs/reference_longest_protein_v1/glycine_max.longest_protein.fa"},
+    "mt": {"species": "Medicago truncatula", "role": "train", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/orthology_inputs/reference_longest_protein_v1/medicago_truncatula.longest_protein.fa"},
+    "sb": {"species": "Sorghum bicolor", "role": "species_holdout", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/orthology_inputs/reference_longest_protein_v1/sorghum_bicolor.longest_protein.fa"},
+    "cr": {"species": "Catharanthus roseus", "role": "species_holdout", "protein_fasta": "/data/derived/phylo_plant_fm_pilot/external_validation_v1/catharanthus_mapping_v1/catharanthus_roseus.longest_protein.fa"}
+  },
+  "targets": {
+    "sb": {
+      "target_cell_cap": 3000,
+      "target_sampling_seed": 20261001,
+      "source_total_budget": 6000,
+      "conditions": {
+        "all_sources": {"sources": ["at", "os", "zm", "gm", "mt"], "cells_per_source": 1200},
+        "nearest_clade": {"sources": ["os", "zm"], "cells_per_source": 3000}
+      }
+    },
+    "cr": {
+      "target_cell_cap": 1347,
+      "target_sampling_seed": 20261002,
+      "source_total_budget": 9000,
+      "conditions": {
+        "all_sources": {"sources": ["at", "os", "zm", "gm", "mt"], "cells_per_source": 1800},
+        "nearest_clade": {"sources": ["at", "gm", "mt"], "cells_per_source": 3000}
+      }
+    }
+  },
+  "source_sampling_seeds": {"at": 20261101, "os": 20261102, "zm": 20261103, "gm": 20261104, "mt": 20261105},
+  "sampling_rule": "For each target and source species, create one fixed random permutation independent of condition and take the first requested cell count, so every all_sources sample is nested within the corresponding nearest_clade sample where applicable. Target cells are identical across conditions.",
+  "budget_rule": "Within each target, all_sources and nearest_clade use exactly the same total number of source cells. Target cell count is identical across conditions.",
+  "map_pairs": [["at","os"],["at","zm"],["at","gm"],["at","mt"],["os","zm"],["os","gm"],["os","mt"],["zm","gm"],["zm","mt"],["gm","mt"],["at","sb"],["os","sb"],["zm","sb"],["gm","sb"],["mt","sb"],["at","cr"],["os","cr"],["zm","cr"],["gm","cr"],["mt","cr"]],
+  "existing_map_pair": {"pair": ["os", "sb"], "source": "/data/derived/phylo_plant_fm_pilot/phase17_samap_smoke_v1/maps/ossb"},
+  "map_threads": 8,
+  "map_parallelism": 1,
+  "estimated_runtime_hours": {"pairwise_maps": 10.2, "four_samap_runs_and_scoring": 4.0, "total_with_margin": 18.0},
+  "samap_rule": "For each target-condition, run SAMAP 3.0.0 with official defaults on the frozen label-free inputs and shared reciprocal BLAST maps.",
+  "prediction_rule": "After each blind stitched mapping is saved and hashed, perform weighted graph label transfer over SAMap connectivities using source canonical-family labels only. Save and hash target predictions before opening target labels.",
+  "evaluation_rule": "Within each target, intersect source canonical families across the two conditions and evaluate both conditions on identical target cells whose frozen canonical labels occur in that common source vocabulary. Report Macro-F1, balanced accuracy, per-family F1, coverage and paired condition difference.",
+  "stop_rule": "Exactly two external targets by two frozen reference conditions, one fixed sample each. No parameter search, added seeds, complete seven-species matrix, SATURN, UCE, fusion or model expansion.",
+  "prepared_root": "/data/derived/phylo_plant_fm_pilot/phase17_samap_external_v1",
+  "report_root": "/data/reports/phylo_plant_fm_pilot/phase17_samap_external_v1",
+  "checkpoint_root": "/data/checkpoints/phylo_plant_fm_pilot/phase17_samap_external_v1"
+}

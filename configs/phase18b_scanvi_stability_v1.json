@@ -1,0 +1,39 @@
+{
+  "run_id": "phase18b_scanvi_stability_v1",
+  "frozen_at": "2026-09-22T05:30:00+08:00",
+  "purpose": "Three-seed paired stability validation of the frozen external scANVI reference-composition effect.",
+  "seeds": [20260910, 20260911, 20260912],
+  "reused_seed": 20260910,
+  "development_cache": "/data/derived/phylo_plant_fm_pilot/scvi_counts_v1_seed20260910",
+  "external_targets": ["Sorghum bicolor", "Catharanthus roseus"],
+  "reference_conditions": {
+    "Sorghum bicolor": {
+      "all_sources": ["Arabidopsis thaliana", "Oryza sativa", "Zea mays", "Glycine max", "Medicago truncatula"],
+      "nearest_clade": ["Oryza sativa", "Zea mays"],
+      "target_index": 5
+    },
+    "Catharanthus roseus": {
+      "all_sources": ["Arabidopsis thaliana", "Oryza sativa", "Zea mays", "Glycine max", "Medicago truncatula"],
+      "nearest_clade": ["Arabidopsis thaliana", "Glycine max", "Medicago truncatula"],
+      "target_index": 6
+    }
+  },
+  "hvg_count": 4000,
+  "hvg_method": "condition-training-only normalize_total_log1p_seurat",
+  "n_hidden": 128,
+  "n_latent": 30,
+  "n_layers": 2,
+  "dropout_rate": 0.1,
+  "scvi_max_epochs": 30,
+  "scanvi_max_epochs": 20,
+  "batch_size": 256,
+  "matching_rule": "Within each target and seed, intersect source label families between conditions, match both conditions to the smaller filtered source-cell pool, and score identical frozen target cells after all blinded predictions are saved and hashed.",
+  "randomization_rule": "model_seed = seed + 1000 * target_index + condition_offset, where all_sources=0 and nearest_clade=101; sampling_seed=model_seed+4242.",
+  "inductive_policy": "External expression is used only for blinded inference. External labels are unavailable to feature selection, fitting, validation, sampling, calibration, reference selection and hyperparameter selection, and are opened only by the final aggregation after all predictions exist and pass hash checks.",
+  "stop_rule": "Exactly three paired seeds including reuse of the frozen 20260910 result. Do not retune, add seeds, change source sets, add fusion or launch larger models.",
+  "gate_rule": "Stop at three seeds if all_sources has positive paired Macro-F1 advantage in both external targets for all three seeds. Otherwise report Conditional-Go and request a decision before any five-seed expansion.",
+  "reused_seed_root": "/data/reports/phylo_plant_fm_pilot/external_validation_v1/external_scanvi_v1",
+  "report_root": "/data/reports/phylo_plant_fm_pilot/phase18b_scanvi_stability_v1",
+  "checkpoint_root": "/data/checkpoints/phylo_plant_fm_pilot/phase18b_scanvi_stability_v1",
+  "log_root": "/data/logs/phylo_plant_fm_pilot/phase18b_scanvi_stability_v1"
+}

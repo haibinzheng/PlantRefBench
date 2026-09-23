@@ -1,0 +1,63 @@
+{
+  "run_id": "external_validation_protocol_v1",
+  "frozen_at": "2026-09-19T11:50:00+08:00",
+  "authorization": "User explicitly authorized the previously sealed external validation step on 2026-09-19.",
+  "development_species": [
+    "Arabidopsis thaliana",
+    "Oryza sativa",
+    "Zea mays",
+    "Glycine max",
+    "Medicago truncatula"
+  ],
+  "external_species": [
+    "Sorghum bicolor",
+    "Catharanthus roseus"
+  ],
+  "reference_conditions": {
+    "Sorghum bicolor": {
+      "all_sources": [
+        "Arabidopsis thaliana",
+        "Oryza sativa",
+        "Zea mays",
+        "Glycine max",
+        "Medicago truncatula"
+      ],
+      "nearest_clade": [
+        "Oryza sativa",
+        "Zea mays"
+      ],
+      "rationale": "monocot references"
+    },
+    "Catharanthus roseus": {
+      "all_sources": [
+        "Arabidopsis thaliana",
+        "Oryza sativa",
+        "Zea mays",
+        "Glycine max",
+        "Medicago truncatula"
+      ],
+      "nearest_clade": [
+        "Arabidopsis thaliana",
+        "Glycine max",
+        "Medicago truncatula"
+      ],
+      "rationale": "eudicot references; no asterid development reference is available"
+    }
+  },
+  "primary_model": "matched-budget linear classifier using the frozen Phase 12 feature and label protocol",
+  "primary_seeds": [20260910, 20260911, 20260912, 20260913, 20260914],
+  "secondary_model": "strict-inductive scANVI using the frozen Phase 13 architecture and seed 20260910",
+  "primary_endpoint": "nearest_clade minus all_sources Macro-F1, averaged within external species across five seeds and then equally across the two species",
+  "secondary_endpoints": [
+    "balanced accuracy",
+    "per-cell-family F1",
+    "condition win counts",
+    "scANVI nearest_clade minus all_sources Macro-F1"
+  ],
+  "matching_rule": "For each external species and model, intersect source label families between conditions, match training-cell budgets to the smaller source pool, and evaluate the identical target cells whose labels occur in the frozen common source vocabulary.",
+  "inductive_policy": "External expression and labels are not used for feature selection, fitting, validation, calibration, confidence thresholds, reference selection, or hyperparameter selection. Labels are opened only for final scoring after predictions are saved.",
+  "go_rule": "Confirm the paper direction if the linear primary endpoint is positive and nearest_clade wins at least 7 of 10 species-seed pairs. Treat scANVI as a model-dependence stress test, not as a requirement for the linear gate.",
+  "stop_rule": "Do not add seeds, alter clade definitions, tune hyperparameters, or add fusion rules after external outcomes are observed.",
+  "paper_scope_if_passed": "reference composition and negative transfer benchmark",
+  "paper_scope_if_failed": "development-only finding; no high-quality generalization claim"
+}

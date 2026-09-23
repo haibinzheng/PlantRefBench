@@ -1,0 +1,15 @@
+cell_id,species,split,cell_family,OG_001,OG_002,OG_003,OG_004
+toy_at_001,Arabidopsis thaliana,reference,cortex,8,2,1,0
+toy_at_002,Arabidopsis thaliana,reference,endodermis,1,9,0,2
+toy_os_001,Oryza sativa,reference,cortex,7,2,2,0
+toy_os_002,Oryza sativa,reference,endodermis,2,8,0,1
+toy_zm_001,Zea mays,reference,cortex,9,1,1,0
+toy_zm_002,Zea mays,reference,endodermis,1,8,1,1
+toy_gm_001,Glycine max,reference,cortex,7,1,2,1
+toy_gm_002,Glycine max,reference,endodermis,2,9,0,0
+toy_mt_001,Medicago truncatula,reference,cortex,8,2,0,1
+toy_mt_002,Medicago truncatula,reference,endodermis,1,7,1,2
+toy_sb_001,Sorghum bicolor,target,,8,1,2,0
+toy_sb_002,Sorghum bicolor,target,,1,8,0,2
+toy_cr_001,Catharanthus roseus,target,,7,2,1,1
+toy_cr_002,Catharanthus roseus,target,,2,8,0,1

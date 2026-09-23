@@ -1,0 +1,13 @@
+{
+  "run_id": "phase18c_linear_budget_dose_v1",
+  "frozen_at": "2026-09-23T08:30:00+08:00",
+  "base_protocol": "/workspace/projects/phylo_plant_fm_pilot/configs/external_validation_v1/external_validation_protocol_v1.json",
+  "external_targets": ["Sorghum bicolor", "Catharanthus roseus"],
+  "seeds": [20260910, 20260911, 20260912, 20260913, 20260914],
+  "budget_fractions": [0.25, 0.5, 1.0],
+  "budget_rule": "For each target and seed, compute the frozen common-class matched full budget. At each fraction, downsample both reference conditions to the same floor(full_budget*fraction) cell count. Preserve target cells and the common class vocabulary across fractions.",
+  "model_rule": "Reuse frozen orthogroup feature extraction and SGDClassifier hyperparameters; use existing seed formula for source sampling and condition-specific model seeds.",
+  "blind_rule": "Save and hash all 30 condition-budget-seed predictions per target before opening external target labels in a separate aggregation step.",
+  "report_root": "/data/reports/phylo_plant_fm_pilot/phase18c_linear_budget_dose_v1",
+  "log_root": "/data/logs/phylo_plant_fm_pilot/phase18c_linear_budget_dose_v1"
+}

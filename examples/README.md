@@ -5,3 +5,6 @@
 Target labels are absent from the feature table. `synthetic_target_truth.csv` is a separate toy-only file illustrating that evaluation labels should be opened only after predictions have been saved.
 
 This example documents a data shape; the archived research runners use H5AD inputs and additional mappings, so this CSV is not a substitute for the experimental datasets or a basis for reproducing paper metrics.
+
+Run `python examples/validate_example.py` from the repository root to check unique cell IDs, finite nonnegative features, empty target labels and one-to-one toy-truth alignment. This is a runnable schema check, not a model-training example. It uses only the Python standard library.
+

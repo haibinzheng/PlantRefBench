@@ -1,0 +1,10 @@
+# Common linear/preparation dependencies, not a frozen research lockfile.
+# Optional scANVI/SAMap environments are documented in docs/RUNNING.md.
+numpy
+pandas
+scipy
+scikit-learn
+anndata
+h5py
+joblib
+

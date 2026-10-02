@@ -18,9 +18,22 @@ The archived research scripts preserve the experiment's original path convention
 ## Layout
 
 - `src/`: model and evaluation scripts.
+- `configs/`: currently released phase configurations.
 - `examples/`: explicitly synthetic input-schema examples.
+- `docs/RUNNING.md`: environment guidance, missing external inputs and workflow entry points.
 - `.gitignore`: guardrails against accidentally committing data, checkpoints, logs, reports, or manuscript files.
+
+## Quick start: no GPU or study data required
+
+```sh
+python examples/validate_example.py
+```
+
+Use Python 3.11 or newer. This standard-library check validates the synthetic input contract; it does not train models or reproduce reported performance.
+
+For research runners, see [Running and input requirements](docs/RUNNING.md). Common dependencies are listed in `requirements-core.txt`; optional scANVI/SAMap environments and required external mappings are separate. The archived scripts and configurations retain their original paths and parameters. Full study inputs, generated mappings, cached data and historical result artifacts are not bundled.
 
 ## License
 
 No reuse license has been selected yet. Please contact the repository owner before redistributing or adapting the code.
+

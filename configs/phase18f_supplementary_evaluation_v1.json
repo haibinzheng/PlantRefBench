@@ -1,0 +1,21 @@
+{
+  "run_id": "phase18f_supplementary_evaluation_v1",
+  "frozen_at": "2026-09-23T11:00:00+08:00",
+  "seeds": [20260910, 20260911, 20260912],
+  "targets": {
+    "Sorghum bicolor": "sb",
+    "Catharanthus roseus": "cr"
+  },
+  "linear_scored_roots": {
+    "Sorghum bicolor": "/data/reports/phylo_plant_fm_pilot/external_validation_v1/sorghum_bicolor_linear_v1",
+    "Catharanthus roseus": "/data/reports/phylo_plant_fm_pilot/external_validation_v1/catharanthus_roseus_linear_v1"
+  },
+  "scanvi_scored": "/data/reports/phylo_plant_fm_pilot/phase18b_scanvi_stability_v1/final_gate/predictions_scored.csv.gz",
+  "samap_reused_report_root": "/data/reports/phylo_plant_fm_pilot/phase17_samap_external_v1",
+  "samap_resampled_report_root": "/data/reports/phylo_plant_fm_pilot/phase18b_samap_resampling_v1",
+  "samap_reused_input_manifest": "/data/derived/phylo_plant_fm_pilot/phase17_samap_external_v1/inputs/manifest.json",
+  "samap_resampled_input_root": "/data/derived/phylo_plant_fm_pilot/phase18b_samap_resampling_v1",
+  "report_root": "/data/reports/phylo_plant_fm_pilot/phase18f_supplementary_evaluation_v1",
+  "evaluation_rule": "Use the same frozen scored cells and label vocabularies as primary evaluations. Compute per-family precision, recall, F1, support, prediction coverage and count/row-normalized confusion matrices for each model-target-seed-condition. Do not refit models or change labels.",
+  "resource_rule": "Report only recorded run times, file sizes and observed input dimensions. Unrecorded peak CPU/GPU memory must be marked unavailable."
+}

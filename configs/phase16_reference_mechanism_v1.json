@@ -1,0 +1,40 @@
+{
+  "run_id": "phase16_reference_mechanism_v1",
+  "frozen_at": "2026-09-19T23:39:15+08:00",
+  "purpose": "Pre-registered equal-k reference-composition mechanism ablation following frozen external validation. This is explanatory benchmarking, not model tuning.",
+  "development_species": ["Arabidopsis thaliana", "Oryza sativa", "Zea mays", "Glycine max", "Medicago truncatula"],
+  "external_species": ["Sorghum bicolor", "Catharanthus roseus"],
+  "source_order": ["Arabidopsis thaliana", "Oryza sativa", "Zea mays", "Glycine max", "Medicago truncatula"],
+  "seeds": [20260910, 20260911, 20260912, 20260913, 20260914],
+  "reference_species_per_combination": 2,
+  "combination_rule": "For a development target evaluate every 2-of-4 subset of the remaining development species; for an external target evaluate every 2-of-5 subset of the five development species. Combinations follow source_order lexicographically.",
+  "representation": "Exact Phase 12 / frozen external-linear multicopy representation: take the top 256 raw input genes per cell and then map their genes to the frozen 19968-orthogroup vocabulary with binary collapse. Phase 16 reuses the original rank_to_orthogroup implementation and frozen mappings; no count-aggregated alternative representation is used.",
+  "feature_cache": "/data/derived/phylo_plant_fm_pilot/phase16_reference_mechanism_v1",
+  "feature_cache_block_cells": 2048,
+  "classifier": {"name": "SGDClassifier", "loss": "log_loss", "alpha": 0.0001, "class_weight": "balanced", "max_iter": 1000, "tol": 0.001},
+  "matching_rule": "For each seed, development source cells first follow the frozen Phase 12 label-stratified source sampling rule. Within each target and seed, form one source-only common class vocabulary by intersecting the pooled class vocabularies of every predeclared equal-k combination. Filter every source to this vocabulary. Set one per-source quota equal to the smallest filtered source-cell count among all candidate source species, then draw one fixed source-specific sample reused in every combination. Thus all combinations have exactly k sources, equal cells from each source, the same total training budget, common source classes, identical source draws whenever a source recurs, and identical target query cells.",
+  "inductive_policy": "No target expression or label is used to select combinations, classes, quotas, features, sampling, model parameters, or stopping decisions. All target predictions are saved and SHA256-hashed before the scoring aggregation opens any target labels.",
+  "target_evaluation_rule": "Development targets are predicted on all cells blindly, then after prediction hashing scored only on the exact frozen Phase 12 per-seed label-stratified max_cells subset using seed + 1009*manifest_train_order. External targets are predicted and scored on all mapped-label cells. In all cases the final evaluated cells are further restricted to the source-only common class vocabulary.",
+  "target_distance_ordinal": {
+    "Arabidopsis thaliana": {"Oryza sativa": 4, "Zea mays": 4, "Glycine max": 2, "Medicago truncatula": 2},
+    "Oryza sativa": {"Arabidopsis thaliana": 4, "Zea mays": 2, "Glycine max": 4, "Medicago truncatula": 4},
+    "Zea mays": {"Arabidopsis thaliana": 4, "Oryza sativa": 2, "Glycine max": 4, "Medicago truncatula": 4},
+    "Glycine max": {"Arabidopsis thaliana": 2, "Oryza sativa": 4, "Zea mays": 4, "Medicago truncatula": 1},
+    "Medicago truncatula": {"Arabidopsis thaliana": 2, "Oryza sativa": 4, "Zea mays": 4, "Glycine max": 1},
+    "Sorghum bicolor": {"Arabidopsis thaliana": 4, "Oryza sativa": 2, "Zea mays": 1, "Glycine max": 4, "Medicago truncatula": 4},
+    "Catharanthus roseus": {"Arabidopsis thaliana": 2, "Oryza sativa": 4, "Zea mays": 4, "Glycine max": 2, "Medicago truncatula": 2}
+  },
+  "source_pairwise_distance_ordinal": {
+    "Arabidopsis thaliana": {"Oryza sativa": 4, "Zea mays": 4, "Glycine max": 2, "Medicago truncatula": 2},
+    "Oryza sativa": {"Zea mays": 2, "Glycine max": 4, "Medicago truncatula": 4},
+    "Zea mays": {"Glycine max": 4, "Medicago truncatula": 4},
+    "Glycine max": {"Medicago truncatula": 1}
+  },
+  "mechanism_metrics": ["reference_pairwise_breadth", "mean_target_distance", "minimum_target_distance", "mean_family_species_support", "fraction_families_supported_by_all_references", "family_richness_before_common_class_filter"],
+  "primary_endpoint": "Macro-F1 for each target-seed-reference-pair observation; balanced accuracy is secondary.",
+  "mechanism_model": "Ordinary least squares: Macro-F1 ~ reference_pairwise_breadth + mean_target_distance + mean_family_species_support + target fixed effects + seed fixed effects. Associations are explanatory, not causal estimates.",
+  "uncertainty": "1000 target-and-seed blocked bootstrap resamples of the complete combination rows; report percentile 95% CIs for mechanism coefficients. Family-level mechanism summaries exclude target-family rows with zero evaluable support.",
+  "external_direction_gate": "For each external target, average Macro-F1 over the five fixed seeds within each reference pair and calculate the within-target Spearman association with reference_pairwise_breadth. The equal-k=2 external direction gate passes only when both Sorghum bicolor and Catharanthus roseus have a strictly positive association. This descriptive gate does not replace the already completed all_sources versus nearest_clade validation.",
+  "stop_rule": "Exactly the five fixed linear seeds, exhaustive equal-k=2 combinations, and no new model, tuning, source set, target, or seed after outcomes are observed.",
+  "interpretation_rule": "Use results to decompose the already observed broad-reference advantage; do not claim a new predictive method from this phase."
+}

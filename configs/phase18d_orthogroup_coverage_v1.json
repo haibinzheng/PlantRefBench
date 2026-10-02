@@ -1,0 +1,13 @@
+{
+  "run_id": "phase18d_orthogroup_coverage_v1",
+  "frozen_at": "2026-09-23T11:30:00+08:00",
+  "targets": {
+    "Sorghum bicolor": "sorghum_bicolor",
+    "Catharanthus roseus": "catharanthus_roseus"
+  },
+  "target_cache_root": "/data/derived/phylo_plant_fm_pilot/external_validation_v1/external_scanvi_counts_v1",
+  "family_pattern_table": "/data/reports/phylo_plant_fm_pilot/phase18d_family_mechanism_v1/family_target_patterns.csv",
+  "report_root": "/data/reports/phylo_plant_fm_pilot/phase18d_orthogroup_coverage_v1",
+  "analysis_rule": "For each frozen canonical family in each authorized external target, compute mean and median active orthogroups per cell and fraction of the 19968-orthogroup vocabulary detected in at least one cell. Join to frozen three-model family gains as descriptive covariates only.",
+  "claim_rule": "Coverage associations are exploratory; no marker orthogroup or paralog causal claim is permitted from these summaries."
+}

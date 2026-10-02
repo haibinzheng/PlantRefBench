@@ -1,0 +1,33 @@
+source_label,canonical_family,mapping_status,confidence,note
+Columella root cap cell,root_cap,mapped,high,root cap subtype
+Lateral root cap,root_cap,mapped,high,root cap subtype
+Root cap,root_cap,mapped,high,broad root cap
+Root cap junction,root_cap,mapped,medium,boundary state retained in broad root cap
+Root hair cell,epidermis_hair,mapped,high,hair-forming epidermis
+Non-hair root epidermal cell,epidermis_nonhair,mapped,high,non-hair epidermis
+Non_hair root epidermal cell,epidermis_nonhair,mapped,high,spelling variant
+Root epidermis,epidermis_unspecified,mapped,high,hair status not supplied
+Root cortex,cortex,mapped,high,cortex
+Cortex,cortex,mapped,high,root context fixed by pilot inclusion
+Root endodermis,endodermis,mapped,high,endodermis
+Mature endodermis,endodermis,mapped,high,endodermis stage collapsed
+Root exodermis,exodermis,mapped,high,exodermis
+Pericycle cell,pericycle,mapped,high,pericycle
+Phloem,phloem,mapped,high,phloem
+Companion cell,phloem,mapped,medium,phloem-associated subtype
+Xylem,xylem,mapped,high,xylem
+Early stele,vascular_undifferentiated,mapped,medium,developmental stele state
+Mature stele,vascular_undifferentiated,mapped,medium,mature stele state
+Root stele,vascular_undifferentiated,mapped,medium,broad stele
+Root procambium,vascular_undifferentiated,mapped,high,vascular precursor
+Root apical meristem,meristem_initial,mapped,medium,broad proliferative root region
+Root meristem,meristem_initial,mapped,medium,broad proliferative root region
+Root initial cell,meristem_initial,mapped,high,root initial
+Epidermal meristematic cell,meristem_initial,mapped,medium,state and lineage are conflated in source label
+Root pith,pith,mapped,high,pith
+Sclerenchyma,sclerenchyma,mapped,high,sclerenchyma
+G2/M-phase cell,,excluded_state_label,high,cell-cycle state is not a conserved identity label
+S-phase cell,,excluded_state_label,high,cell-cycle state is not a conserved identity label
+Root nodule,,excluded_tissue_specific,high,nodule-specific state excluded from broad root benchmark
+Unknown,,unresolved,high,never convert unknown into a known class
+

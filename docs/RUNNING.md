@@ -5,10 +5,12 @@
 From the repository root with Python 3.11 or newer:
 
 ```sh
+python scripts/check_package.py
 python examples/validate_example.py
+python -m unittest discover -s tests -v
 ```
 
-This command uses only the Python standard library and checks the invented example's IDs, nonnegative finite features and separation of target labels. They do not train a classifier, validate scientific performance, or reproduce the study. The example validator deliberately reads toy truth to check alignment; it is not the label-blind prediction stage.
+These commands use only the Python standard library. They parse archived source without importing it, validate configuration syntax and named local dependencies, and check the invented example's IDs, nonnegative finite features and separation of target labels. They do not train a classifier, validate scientific performance, or reproduce the study. The example validator deliberately reads toy truth to check alignment; it is not the label-blind prediction stage.
 
 ## Research environments
 
@@ -20,18 +22,18 @@ scANVI additionally requires compatible PyTorch, scvi-tools and Scanpy installat
 
 | Input | Purpose | Included? |
 | --- | --- | --- |
-| `configs/pilot_manifest.csv` | Dataset IDs, roles, historical H5AD paths and caps | Not yet released |
-| `configs/root_label_mapping_draft.csv` | Historical source-label to cell-family rules | Not yet released |
+| `configs/pilot_manifest.csv` | Dataset IDs, roles, historical H5AD paths and caps | Yes, metadata only |
+| `configs/root_label_mapping_draft.csv` | Historical source-label to cell-family rules | Yes; original filename retained |
 | Source H5AD files | Expression and observation metadata | No |
 | Gene-ID mapping and OrthoFinder orthogroup tables | Shared orthogroup representation | No |
-| Catharanthus-to-frozen-orthogroup mapping | External target representation | Not yet released |
+| Catharanthus-to-frozen-orthogroup mapping | External target representation | Preparation code included; generated mapping absent |
 | Reciprocal sequence maps | SAMap cross-species mapping | No; reuse existing maps when continuing a frozen run |
-| Cached counts/features and seed-specific manifests | Prepared model inputs | No; some preparation code is included |
+| Cached counts/features and seed-specific manifests | Prepared model inputs | No; preparation code included |
 | Prior predictions, hashes and summaries | Aggregation/stability reference inputs | No |
 
 The pilot manifest also records early study-holdout datasets. Its row count must not be interpreted as the number of targets in every later experiment. Later phase JSON configurations define their own scope. Preserve the original data's usage terms and citations when obtaining inputs; synthetic examples grant no rights to source datasets.
 
-## Research workflow and release gaps
+## Archived workflow entry points
 
 | Stage | Relevant source files |
 | --- | --- |
@@ -44,7 +46,7 @@ The pilot manifest also records early study-holdout datasets. Its row count must
 | Linear budget dose | `phase18c_run_linear_budget_dose_v1.py`, `phase18c_aggregate_linear_budget_dose_v1.py`, `phase18c_dose_statistics_v1.py` |
 | Family and coverage evaluation | `phase18d_*`, `phase18f_build_supplementary_evaluation_v1.py` |
 
-Some files listed above are still pending release approval, including the Phase 16 runners, external validation helpers and configuration metadata. This table describes the research workflow, not a list of fully available files or a command to run every archived stage. Inspect each runner's arguments, configuration and input-path constants before execution. Several runners have hard-coded `/workspace/projects/phylo_plant_fm_pilot` and `/data/.../phylo_plant_fm_pilot` paths, and aggregators require earlier outputs. Adapt a separate working copy to your installation and record the changes; do not overwrite an existing frozen experiment. In particular, never rerun map construction or finished predictions merely to satisfy packaging checks.
+This is a dependency guide, not a command to run every archived stage. Inspect each runner's arguments, configuration and input-path constants before execution. Several runners have hard-coded `/workspace/projects/phylo_plant_fm_pilot` and `/data/.../phylo_plant_fm_pilot` paths, and aggregators require earlier outputs. Adapt a separate working copy to your installation and record the changes; do not overwrite an existing frozen experiment. In particular, never rerun map construction or finished predictions merely to satisfy packaging checks.
 
 Save and hash label-blind predictions before evaluation, retain target IDs, and keep paired seeds/budgets aligned. Random seeds are technical repeats, not biological replicates. No full-data rerun was performed for this packaging update.
 

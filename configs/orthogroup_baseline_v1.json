@@ -1,0 +1,25 @@
+{
+  "run_id": "orthogroup_baseline_v1",
+  "seed": 20260910,
+  "top_k_genes_per_cell": 256,
+  "feature_rule": "orthogroups represented in at least two training species, defined from frozen reference proteomes only",
+  "training_roles": ["train"],
+  "evaluation_roles": ["study_holdout", "species_holdout"],
+  "excluded_species": ["Catharanthus roseus"],
+  "linear": {
+    "loss": "log_loss",
+    "alpha": 0.0001,
+    "class_weight": "balanced",
+    "max_iter": 1000
+  },
+  "mlp": {
+    "hidden_layer_sizes": [64],
+    "alpha": 0.0001,
+    "batch_size": 1024,
+    "max_iter": 20,
+    "early_stopping": true,
+    "validation_fraction": 0.1,
+    "n_iter_no_change": 4
+  },
+  "leakage_control": "Feature vocabulary is determined only by complete reference proteomes of training species. Holdout expression and labels do not select orthogroups."
+}

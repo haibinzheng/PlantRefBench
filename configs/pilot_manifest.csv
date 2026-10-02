@@ -1,0 +1,12 @@
+dataset_id,species,role,expression_track,max_cells,source_h5ad,rationale
+Arabidopsis thaliana_PRJCA016521_Root,Arabidopsis thaliana,train,count_like_unverified,30000,/data/datasets/Bioinformatics/h5ad/Arabidopsis thaliana_PRJCA016521_Root.h5ad,high-resource eudicot root training
+Arabidopsis thaliana_PRJCA021408_Root,Arabidopsis thaliana,study_holdout,count_like_unverified,20000,/data/datasets/Bioinformatics/h5ad/Arabidopsis thaliana_PRJCA021408_Root.h5ad,independent Arabidopsis study holdout
+Oryza sativa_PRJNA706435,Oryza sativa,train,count_like_unverified,30000,/data/datasets/Bioinformatics/h5ad/Oryza sativa_PRJNA706435.h5ad,high-resource monocot root training
+Oryza sativa_CRA004082_Root,Oryza sativa,study_holdout,scaled_continuous,10000,/data/datasets/Bioinformatics/h5ad/Oryza sativa_CRA004082_Root.h5ad,independent rice study and heterogeneous-input holdout
+Zea mays_PRJNA454730,Zea mays,train,count_like_unverified,10000,/data/datasets/Bioinformatics/h5ad/Zea mays_PRJNA454730.h5ad,maize root training
+Zea mays_PRJNA759548,Zea mays,study_holdout,scaled_continuous,6000,/data/datasets/Bioinformatics/h5ad/Zea mays_PRJNA759548.h5ad,independent maize study and heterogeneous-input holdout
+Glycine max_PRJNA1124403_Root,Glycine max,train,count_like_unverified,20000,/data/datasets/Bioinformatics/h5ad/Glycine max_PRJNA1124403_Root.h5ad,legume root with many unknown labels
+Medicago truncatula_PRJNA931615,Medicago truncatula,train,count_like_unverified,25000,/data/datasets/Bioinformatics/h5ad/Medicago truncatula_PRJNA931615.h5ad,second legume and nodule-related states
+Sorghum bicolor_PRJNA935359,Sorghum bicolor,species_holdout,count_like_unverified,10000,/data/datasets/Bioinformatics/h5ad/Sorghum bicolor_PRJNA935359.h5ad,unseen monocot species
+Catharanthus roseus_PRJNA847226_Root,Catharanthus roseus,species_holdout,count_like_unverified,1347,/data/datasets/Bioinformatics/h5ad/Catharanthus roseus_PRJNA847226_Root.h5ad,low-resource unseen eudicot species
+

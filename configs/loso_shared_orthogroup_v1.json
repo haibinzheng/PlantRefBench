@@ -1,0 +1,11 @@
+{
+  "run_id": "loso_shared_orthogroup_v1",
+  "seeds": [20260910, 20260911, 20260912, 20260913, 20260914],
+  "development_roles": ["train"],
+  "top_k_full_orthogroups": 256,
+  "top_k_single_copy_orthogroups": 64,
+  "single_copy_rule": "exactly one reference protein in each of the six frozen OrthoFinder species",
+  "full_orthogroup_rule": "represented in at least two development species",
+  "primary_endpoint": "leave-one-development-species-out macro-F1",
+  "query_genome_policy": "query reference proteome may define gene-to-orthogroup membership; query expression and labels never influence fitting, feature selection, or hyperparameters"
+}

@@ -1,0 +1,14 @@
+{
+  "run_id": "phase18d_family_mechanism_v1",
+  "frozen_at": "2026-09-23T09:00:00+08:00",
+  "seeds": [20260910, 20260911, 20260912],
+  "targets": ["Sorghum bicolor", "Catharanthus roseus"],
+  "models": ["orthogroup_linear", "scANVI", "SAMap"],
+  "linear_family_metrics": "/data/reports/phylo_plant_fm_pilot/phase18c_linear_budget_dose_v1/final_dose/family_metrics.csv",
+  "scanvi_family_metrics": "/data/reports/phylo_plant_fm_pilot/phase18b_scanvi_stability_v1/final_gate/family_metrics.csv",
+  "samap_family_differences": "/data/reports/phylo_plant_fm_pilot/phase18b_samap_resampling_v1/final_gate/family_differences.csv",
+  "development_cache_manifest": "/data/derived/phylo_plant_fm_pilot/scvi_counts_v1_seed20260910/manifest.json",
+  "report_root": "/data/reports/phylo_plant_fm_pilot/phase18d_family_mechanism_v1",
+  "analysis_rule": "Compare all-minus-nearest family F1 for the same target and seed in all three frozen models. Exclude zero-target-support families where support is available. Report reproducibility by target, family and model, with source-family species support and entropy as descriptive covariates.",
+  "claim_rule": "A family mechanism is confirmatory only if its direction is consistent across both external targets or across at least two independent model frameworks, with both positive and negative boundary patterns shown. Descriptive source support is not a causal estimate."
+}
